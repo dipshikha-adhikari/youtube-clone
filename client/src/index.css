@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+@layer utilities {
+  .grid-cols-auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  min-height: 100vh;
+  position: relative;
+}
+body.dark {
+  background: #000;
+}
+
+.category::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.home::-webkit-scrollbar-track {
+  width: 2px;
+  background: #1c1b1b;
+}
+
+.sidebar::-webkit-scrollbar,
+.search_results::-webkit-scrollbar {
+  width: 2px;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.app::-webkit-scrollbar-thumb,
+.search_results::-webkit-scrollbar-thumb {
+  width: 2px;
+  background: #c1c1c1;
+}
+
+body.dark .sidebar::-webkit-scrollbar-track,
+body.dark .search_results::-webkit-scrollbar-track,
+body.dark .home::-webkit-scrollbar-track {
+  width: 2px;
+  background: #1c1b1b;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.search_results::-webkit-scrollbar-track,
+.home::-webkit-scrollbar-track {
+  width: 2px;
+  background: #dedada;
+}
+
+.loading {
+  transition: 1s ease all;
+}
+
+.loading::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: rgba(165, 164, 164, 0.198);
+  top: 0;
+  animation: animate 2s infinite;
+  transition: 2s ease all;
+}
+
+body.light .loading::after {
+  background: rgb(189, 189, 189);
+}
+
+.loading.image::after {
+  border-radius: 50%;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.cat_loading::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  animation: animate 2s infinite;
+  background: rgb(189, 189, 189);
+}
+
+body.dark .cat_loading::after {
+  background: rgba(162, 160, 160, 0.198);
+}
+
+.title {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
