@@ -10,7 +10,7 @@ require('dotenv').config('./env')
 
 let corsOptions = {
     origin: process.env.CLIENT_URL,
-    credentials:true
+    credentials: true
 }
 app.use(cors(corsOptions))
 
@@ -19,12 +19,11 @@ app.get('/', (req: Request, res: Response) => {
     res.status(200).json({ msg: 'Welcome to the backend' });
 });
 
-
 app.use('/api/v1/videos', videosRoute)
-app.use('/api/v1/channels',channelsRoute )
+app.use('/api/v1/channels', channelsRoute)
 app.use('/api/v1/search', searchRoute)
 app.use('/api/v1/categories', categoriesRoute)
-app.use('/*' , (req:Request, res:Response) => res.send('Please try a good endpoint'))
+app.use('/*', (req: Request, res: Response) => res.send('Please try a good endpoint'))
 
 app.listen(PORT, () => {
     console.log('Server is running');
