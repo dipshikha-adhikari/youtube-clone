@@ -27,7 +27,7 @@ const Videos = () => {
       const entry = entries[0];
       if(entry.isIntersecting){
         console.log('yes')
-        dispatch(setPageNumber());
+        // dispatch(setPageNumber());
       }else{
         console.log('no')
       }
@@ -44,21 +44,25 @@ const Videos = () => {
   }, [targetRef.current]);
 
   return (
-    <>
+    <div className="h-full relative">
       {videos !== undefined && videos.length !== 0 ? (
-        <div ref={ref} className=" grid gap-4  sm:grid-cols-2 md:grid-cols-3 w-full    ">
+      <div>
+          <div ref={ref} className=" grid gap-4  sm:grid-cols-2 md:grid-cols-3 w-full    ">
           {videos.map((video: VideoType) => {
             return <Video key={video.id} {...video} />;
           })}{" "}
+
         </div>
+          <div ref={targetRef} className="absolute z-50  h-40  bottom-[100px]">
+          {videos !== undefined && videos.length !== 0 && <h2></h2> }
+           </div>
+      </div>
       ) : (
         <VideosSkeleton />
       )}
 
-      <div ref={targetRef}>
-     {videos !== undefined && videos.length !== 0 && <h2>Fetching more...</h2> }
-      </div>
-    </>
+    
+    </div>
   );
 };
 

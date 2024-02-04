@@ -26,7 +26,7 @@ module.exports = {
           dark:'#030712'
         },
         'shadow':{
-          light:'#d1d5db',
+          light:'#cbd5e1',
           dark:'#292524'
         }
       }

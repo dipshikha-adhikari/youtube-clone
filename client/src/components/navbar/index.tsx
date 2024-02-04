@@ -41,7 +41,6 @@ let sidebarOpen = useSelector((s:InitialState) => s.components.isMenubarOpen)
             <span
               onClick={() => {
                 dispatch(handleMenubar())
-                console.log('f')
               }}
               className="cursor-pointer grid  "
             >
@@ -52,7 +51,7 @@ let sidebarOpen = useSelector((s:InitialState) => s.components.isMenubarOpen)
               className="flex text-sm xs:text-lg items-center gap-1  "
             >
               <img src={YoutubeIcon} alt="" className="w-5 xs:w-7" />
-              BTube
+        <span className="hidden xs:block">BTube</span>
             </Link>
           </div>
 

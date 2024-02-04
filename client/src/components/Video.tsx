@@ -27,7 +27,7 @@ const Video = (video: VideoType) => {
 
 
   return (
-    <div className="max-w-[420px] w-full overflow-hidden h-fit text-stone-900 dark:text-white mx-auto ">
+    <div className="max-w-[420px]  overflow-hidden h-fit text-stone-900 dark:text-white mx-auto ">
       <Link to={`/watch/${video.id}`} className="">
         <div className="relative h-[200px]">
           <img

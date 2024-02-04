@@ -16,7 +16,7 @@ const CategoriesBar = () => {
           return (
             <span
               key={i * 2}
-              className="cat_loading  relative h-[4vh] text-stone-900 dark:bg-shadow-dark  min-w-[70px]  bg-stone-300 dark:text-white px-2 rounded-md"
+              className="cat_loading  relative h-[4vh] bg-slate-300 text-stone-900 dark:bg-shadow-dark  min-w-[70px]  dark:text-white px-2 rounded-sm"
             ></span>
           );
         })}

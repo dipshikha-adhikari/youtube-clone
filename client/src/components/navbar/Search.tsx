@@ -55,7 +55,7 @@ const Search = () => {
             <ArrowBackOutlined />
           </span>
         )}
-        <span className="flex flex-1 border-gray-300 dark:border-stone-500 items-center border-[1.4px] px-4  rounded-2xl">
+        <span className="flex flex-1 border-gray-300 dark:border-stone-500 items-center border-[1.4px] px-4  rounded-md">
           <input
             type="text"
             className=" w-full search outline-none bg-transparent px-4 text-xl py-1 "
