@@ -15,28 +15,28 @@ const Comment: React.FC<CommentProps> = ({ c, setShowReply }) => {
 
   return (
     <div>
-      <div key={c.etag} className="grid gap-4   h-auto ">
+      <div key={c.etag} className="grid gap-2 break-all  h-auto ">
         <div className="flex gap-4">
           <img
             src={c.snippet.topLevelComment.snippet.authorProfileImageUrl}
             alt="img"
-            className="w-10 h-10 rounded-full"
+            className="w-8 h-8 rounded-full"
           />
           <div className="grid gap-2  ">
-            <div>
-              <p className="flex gap-4 w-full  ">
+            <div className="grid gap-2">
+              <p className="grid ">
                 <span className="font-semibold">
                   {c.snippet.topLevelComment.snippet.authorDisplayName}
                 </span>{" "}
-                <span>{formattedTime}</span>
+                <span className="dark:text-gray-400 text-gray-500 text-sm dar">{formattedTime}</span>
               </p>
               <span className="break-all">
                 {c.snippet.topLevelComment.snippet.textDisplay}
               </span>
             </div>
 
-            <div className="flex gap-10 cursor-pointer">
-              <span className={`   flex gap-1`}>
+            <div className="flex gap-4 cursor-pointer">
+              <span className={`   flex `}>
                 {<ThumbUpOffAltIcon />}
                 {c.snippet.topLevelComment.snippet.likeCount}
               </span>

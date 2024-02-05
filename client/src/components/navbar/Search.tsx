@@ -32,6 +32,7 @@ const Search = () => {
       setShowSuggestionBox(true)
     }
   }
+
   return (
     <div
   

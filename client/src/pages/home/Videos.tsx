@@ -9,6 +9,8 @@ import VideosSkeleton from "../../components/skeleton/VideosSkeleton";
 const Videos = () => {
   const targetRef = useRef(null);
   const dispatch = useDispatch();
+let pageNum = 0
+
   const currentCategory = useSelector(
     (state: InitialState) => state.videos.selectedCategory
   );
@@ -26,10 +28,9 @@ const Videos = () => {
     const observer = new IntersectionObserver((entries) => {
       const entry = entries[0];
       if(entry.isIntersecting){
-        console.log('yes')
-        // dispatch(setPageNumber());
+        pageNum++
+        dispatch(setPageNumber(pageNum));
       }else{
-        console.log('no')
       }
     
     });
@@ -53,14 +54,13 @@ const Videos = () => {
           })}{" "}
 
         </div>
-          <div ref={targetRef} className="absolute z-50  h-40  bottom-[100px]">
-          {videos !== undefined && videos.length !== 0 && <h2></h2> }
-           </div>
+        
       </div>
       ) : (
         <VideosSkeleton />
       )}
-
+  <div ref={targetRef} className="z-50 absolute  h-40  bottom-[100px]">
+           </div>
     
     </div>
   );

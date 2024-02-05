@@ -13,6 +13,7 @@ const VideoInfo = ({video, formattedData}:any) => {
     up: false,
     down: false,
   });
+
 const{data:channel} = useGetChannelQuery(video?.snippet.channelId)
 
   useEffect(() => {
@@ -23,14 +24,14 @@ const{data:channel} = useGetChannelQuery(video?.snippet.channelId)
     }
   }, [channel]);
 
-  if (video === undefined) return null;
+  if (!video) return null;
 
   return (
     <>
-      <div className="flex items-center gap-4 max-w-[400px] xs:gap-10 ">
+      <div className="flex items-center dark:bg-stone-800  p-2 rounded-sm gap-4 xs:gap-10 w-fit  ">
         <Link
           to={`/${channel?.id}`}
-          className="flex items-center  gap-4 w-full xs:gap-10"
+          className="flex items-center gap-4 w-full "
         >
           <img
             src={`${video.snippet.thumbnails.medium.url}`}
@@ -42,7 +43,7 @@ const{data:channel} = useGetChannelQuery(video?.snippet.channelId)
             <span>{formatSubs} subscribers</span>
           </div>
         </Link>
-        <button className=" cursor-default text-sm p-1 bg-stone-900 text-white rounded-md  dark:bg-white dark:text-stone-900">
+        <button className=" cursor-default text-sm p-1 px-2 bg-stone-900 text-white rounded-md  dark:bg-white dark:text-stone-900">
           Subscribe
         </button>
       </div>

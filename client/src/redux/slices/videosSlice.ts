@@ -21,8 +21,8 @@ export const videosSlice: any = createSlice({
       state.selectedCategory = action.payload;
     },
 
-    setPageNumber: (state) => {
-      state.pageNumber = state.pageNumber + 1
+    setPageNumber: (state, action) => {
+      state.pageNumber = action.payload
     },
   },
 });

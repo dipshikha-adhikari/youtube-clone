@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import {  useGetChannelQuery, useGetSearchResultsQuery, useGetVideoByMultipleIdsQuery } from "../services/videos"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { InitialState, VideoType } from "../../types"
+import { setPageNumber } from "../redux/slices/videosSlice"
 
 
 export const useSearch = () => {
@@ -17,20 +18,20 @@ export const useSearch = () => {
   const { data: channel } = useGetChannelQuery(channelId)
   const pageNumber = useSelector((state: InitialState) => state.videos.pageNumber)
   const [videos, setVideos] = useState<VideoType[]>([])
-
+const dispatch = useDispatch()
 
   useEffect(() => {
     setVideos([])
     setChannelId('')
     setNextPageToken('')
+ dispatch(   setPageNumber(0))
   }, [query])
 
   useEffect(() => {
-    if (data) {
+    if (data ) {
       setNextPageToken(data.nextPageToken)
     }
   }, [pageNumber])
-
 
   useEffect(() => {
     let ids = ''
@@ -48,14 +49,17 @@ export const useSearch = () => {
       setVideoIds(ids)
     }
   }, [data])
-
+console.log(channel)
   useEffect(() => {
-    if (videosData !== undefined) {
-      if (nextPageToken !== '') {
+    if (videosData) {
+      if (pageNumber >= 1) {
         setVideos((prev: any) => {
           const newVideos = videosData.items.filter((item: VideoType) => !prev.some((p: VideoType) => p.id === item.id));
           return [...prev, ...newVideos];
         });
+        if(channel){
+
+        }
       } else {
         setVideos(videosData?.items)
       }

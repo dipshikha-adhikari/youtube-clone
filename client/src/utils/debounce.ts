@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 
 export const useDebounce = (fn: any, delay: any) => {
   let timer: any;
-  let context = this;
 
-  return function () {
+  return function (...args: any) {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      fn.apply(context);
+      fn(...args);
+      console.log('Debounced function called');
     }, delay);
   };
 };

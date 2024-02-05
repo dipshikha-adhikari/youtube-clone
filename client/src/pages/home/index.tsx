@@ -12,7 +12,6 @@ const Homepage = () => {
           <CategoriesBar />
         </div>
         <div className="w-full  pb-2   relative   ">
-          
           {location.pathname === "/" && <Videos />}
         </div>
       </div>

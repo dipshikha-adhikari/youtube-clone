@@ -12,7 +12,7 @@ const Comments = () => {
   const { data: comments } = useGetCommentsQuery(id);
 
   if (comments === undefined) return null;
-console.log(showReply)
+
   return (
     <div className="text-stone-900 dark:text-white grid gap-10 py-10 ">
       <div className="flex  gap-10">

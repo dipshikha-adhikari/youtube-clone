@@ -13,12 +13,18 @@ const SearchResults = () => {
   const { videos, channel, channelId } = useSearch();
   const targetRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
+let pageNum = 0
+
+useEffect(() => {
+window.scrollTo(0,0)
+},[])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          dispatch(setPageNumber());
+          pageNum++
+          dispatch(setPageNumber(pageNum));
         }
       },
       { threshold: 0 }

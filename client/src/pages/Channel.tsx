@@ -22,7 +22,7 @@ const Channel = () => {
     <>
       <div className="grid gap-4 text-stone-900 dark:text-white p-1 sm:px-10 ">
         <img
-          src={channel.brandingSettings.image.bannerExternalUrl}
+          src={channel?.brandingSettings?.image?.bannerExternalUrl}
           alt="image"
           className=" object-cover h-[100px] w-full"
         />
@@ -38,9 +38,9 @@ const Channel = () => {
             <div className="flex text-sm xs:text-lg  gap-4">
               <span className="font-semibold">{channel.snippet.customUrl}</span>
               <span>{formattedSubscribers} subscribers</span>
-              <span>{channel.statistics.videoCount} videos</span>
+              <span>{channel?.statistics?.videoCount} videos</span>
             </div>
-            <p className="word-break w-full">{channel.snippet.description}</p>
+            <p className="word-break w-full">{channel?.snippet?.description}</p>
           </div>
         </div>
       </div>

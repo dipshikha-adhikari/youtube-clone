@@ -12,7 +12,7 @@ const Videos = () => {
 
   return (
     <>
-    <div className="grid gap-4 grid-cols-auto-fit h-fit">
+    <div className="grid gap-4 sm:grid-cols-auto-fit h-fit">
       {videos.map((video: VideoType) => {
         return <Video key={video.id} {...video} />;
       })}

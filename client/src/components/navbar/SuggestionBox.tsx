@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { VideoType, SearchType, InitialState } from '../../../types';
+import { SearchType } from '../../../types';
 
 const SuggestionBox = ({
   setShowSuggestionBox,
