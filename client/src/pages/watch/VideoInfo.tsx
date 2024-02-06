@@ -28,10 +28,10 @@ const{data:channel} = useGetChannelQuery(video?.snippet.channelId)
 
   return (
     <>
-      <div className="flex items-center dark:bg-stone-800  p-2 rounded-sm gap-4 xs:gap-10 w-fit  ">
+      <div className="flex items-center dark:bg-stone-800  p-2 rounded-sm gap-4 xs:gap-10   ">
         <Link
           to={`/${channel?.id}`}
-          className="flex items-center gap-4 w-full "
+          className="flex items-center gap-4 w-fit "
         >
           <img
             src={`${video.snippet.thumbnails.medium.url}`}
