@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "react-infinite-scroll-component": "^6.1.0",
-    "react-intersection-observer": "^9.5.2"
-  }
-}

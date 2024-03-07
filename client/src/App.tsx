@@ -26,45 +26,38 @@ const App = () => {
     }
   }, [theme.darkTheme]);
 
-
-  
   return (
     <>
-    <Navbar />
+      <Navbar />
 
-{/* these two sidebar are only for homepage  */}
+      {/* these two sidebar are only for homepage  */}
 
-<div
-  className={` text-stone-900   dark:text-white flex max-w-[1500px] mx-auto w-full`}
->
+      <div
+        className={` text-stone-900   dark:text-white flex max-w-[1500px] mx-auto w-full`}
+      >
+        {/*left section */}
+        <div>
+          <Sidebar />
+          <div
+            className={`${
+              components.isMenubarOpen ? "lg:block" : "lg:hidden"
+            } pt-[20vh] md:block hidden `}
+          >
+            <SubSidebar />
+          </div>
+        </div>
 
-  {/*left section */}
-<div className= {`
-    ${extracted === "watch" && "hidden"}
- ` } >
-    <Sidebar />
-  <div
-
-    className={`${
-      components.isMenubarOpen ? "lg:block" : "lg:hidden"
-    } pt-[20vh] md:block hidden `}
-  >
-    <SubSidebar />
- </div>
-</div>
-
-{/* right section  */}
-  <div className=" mt-[8vh] app xs:mt-[10vh] h-[90vh] z-40 w-full overflow-y-scroll  px-4 sm:px-8 ">
-    <Routes>
-      <Route path="/" element={<Homepage />} />
-      <Route path="/subscriptions" element={<Subscriptions />} />
-      <Route path="/watch/:videoId" element={<Watch />} />
-      <Route path="/results" element={<SearchResults/>} />
-      <Route path="/:id" element={<Channel/>} />
-      <Route path="*" element={<ErrorPage />} />
-    </Routes>
-  </div>
-</div>
+        {/* right section  */}
+        <div className=" mt-[8vh] app xs:mt-[10vh] h-[90vh] z-40 w-full overflow-y-scroll  px-4 sm:px-8 ">
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/watch/:videoId" element={<Watch />} />
+            <Route path="/results" element={<SearchResults />} />
+            <Route path="/:id" element={<Channel />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </div>
+      </div>
     </>
   );
 };
