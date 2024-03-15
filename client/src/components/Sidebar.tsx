@@ -29,8 +29,9 @@ const Sidebar = () => {
   }
 
   function handleClick(e: MouseEvent) {
-    if (components.isMenubarOpen) {
+    if (window.innerWidth < 1280 && components.isMenubarOpen) {
       const target = e.target as HTMLElement;
+      console.log(target.className);
       if (target instanceof HTMLElement && !target.className.includes("menu")) {
         dispatch(closeSidebar());
       }
@@ -55,46 +56,41 @@ const Sidebar = () => {
         components.isMenubarOpen
           ? "fixed sidebar   top-0 left-0 lg:hidden  "
           : "left-[-100%] hidden lg:block"
-      } top-0  p-4 sm:pl-8 transition-all menu  text-stone-900 dark:text-white duration-200 dark:bg-stone-950 bg-white min-h-screen  z-[100]  `}
+      } top-0  p-4 sm:pl-8 transition-all menu   text-stone-900 dark:text-white duration-200 dark:bg-stone-950 bg-white min-h-screen  z-[100]  `}
     >
-      <div className={`flex items-center gap-4 pb-6  `}>
+      <div className={`flex items-center gap-4 pb-6 menu  `}>
         <Menu
-        onClick={() => {
-          dispatch(handleMenubar())
-          console.log('side')
-        }}
+          onClick={() => {
+            dispatch(handleMenubar());
+          }}
           className="cursor-pointer"
         />
-        <Link
-              to="/"
-              className="flex text-sm xs:text-lg items-center gap-1  "
-            >
-              <img src={YoutubeIcon} alt="" className="w-5 xs:w-7" />
-              BTube
-            </Link>
+        <Link to="/" className="flex text-sm xs:text-lg items-center gap-1  ">
+          <img src={YoutubeIcon} alt="" className="w-5 xs:w-7" />
+          BTube
+        </Link>
       </div>
 
       {/* bottom */}
       <div
         className={` h-[84vh] menu  overflow-y-scroll pb-10   relative  flex flex-col gap-10  sidebar pr-4  w-full`}
       >
-        <div className="grid gap-4">
+        <div className="grid menu gap-4">
           {links.map((link: any) =>
             link.mainLinks.map((l: Link) => {
               return (
-                <Link
-                  to={l.link}
+                <li
                   onClick={() => dispatch(closeSidebar())}
                   key={l.title}
-                  className="flex gap-6 text-dark "
+                  className="flex gap-6 cursor-pointer text-dark "
                 >
                   {<l.icon />} {l.title}
-                </Link>
+                </li>
               );
             })
           )}
         </div>
-        <div className="grid gap-4">
+        <div className="grid menu gap-4">
           {links.map((link: any) =>
             link.subLinks.map((l: any) => {
               return (
@@ -102,7 +98,7 @@ const Sidebar = () => {
                   to="/"
                   onClick={() => dispatch(closeSidebar())}
                   key={l.title}
-                  className="flex gap-6 cursor-default"
+                  className="flex gap-6 cursor-pointer"
                 >
                   {<l.icon />} {l.title}
                 </Link>
@@ -110,8 +106,8 @@ const Sidebar = () => {
             })
           )}
         </div>
-        <div className="grid gap-4">
-          <h2 className="font-semibold text-xl ">Subscriptions</h2>
+        <div className="grid menu gap-4">
+          <h2 className="font-semibold menu text-xl ">Subscriptions</h2>
           {links.map((link: any) =>
             link.subscriptions.map((l: any) => {
               return (
@@ -119,7 +115,7 @@ const Sidebar = () => {
                   to="/"
                   onClick={() => dispatch(closeSidebar())}
                   key={l.title}
-                  className="flex gap-6  cursor-default"
+                  className="flex gap-6  cursor-pointer"
                 >
                   {<l.icon />} {l.title}
                 </Link>
