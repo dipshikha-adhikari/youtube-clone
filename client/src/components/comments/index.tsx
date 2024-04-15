@@ -2,12 +2,14 @@ import { CommentType, ReplyType } from "../../../types";
 
 import Comment from "./Comment";
 import Replay from "../Replay";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useGetCommentsQuery } from "../../services/videos";
 import { useParams } from "react-router-dom";
 
 const Comments = () => {
   const [showReply, setShowReply] = useState(false);
+  const [commentId, setCommentId] = useState<string>("");
+
   const id = useParams().videoId;
   const { data: comments } = useGetCommentsQuery(id);
 
@@ -24,11 +26,20 @@ const Comments = () => {
       {comments.map((c: CommentType) => {
         return (
           <div key={c.etag} className="my-[-1rem]">
-            <Comment c={c} setShowReply={setShowReply} />
+            <Comment
+              c={c}
+              setShowReply={setShowReply}
+              setCommentId={setCommentId}
+              showReplay={showReply}
+              commentId={commentId}
+            />
 
-            {showReply && c.replies !== undefined &&
+            {showReply &&
+              c.replies !== undefined &&
               c.replies.comments.map((r: ReplyType) => {
-                return <Replay key={r.id} replay={r} />;
+                if (commentId === r.snippet.parentId) {
+                  return <Replay key={r.id} replay={r} />;
+                }
               })}
           </div>
         );

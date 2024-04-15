@@ -3,13 +3,24 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import moment from "moment";
 import { CommentType } from "../../../types";
-
+import { useEffect } from "react";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 interface CommentProps {
   c: CommentType;
   setShowReply: any;
+  setCommentId: (props: string) => void;
+  commentId: string;
+  showReplay: boolean;
 }
 
-const Comment: React.FC<CommentProps> = ({ c, setShowReply }) => {
+const Comment: React.FC<CommentProps> = ({
+  c,
+  setShowReply,
+  setCommentId,
+  showReplay,
+  commentId,
+}) => {
   const date = c.snippet.topLevelComment.snippet.publishedAt;
   const formattedTime = moment(date).fromNow();
 
@@ -28,7 +39,9 @@ const Comment: React.FC<CommentProps> = ({ c, setShowReply }) => {
                 <span className="font-semibold">
                   {c.snippet.topLevelComment.snippet.authorDisplayName}
                 </span>{" "}
-                <span className="dark:text-gray-400 text-gray-500 text-sm dar">{formattedTime}</span>
+                <span className="dark:text-gray-400 text-gray-500 text-sm dar">
+                  {formattedTime}
+                </span>
               </p>
               <span className="break-all">
                 {c.snippet.topLevelComment.snippet.textDisplay}
@@ -42,12 +55,35 @@ const Comment: React.FC<CommentProps> = ({ c, setShowReply }) => {
               </span>
               <span>{<ThumbDownOffAltIcon />}</span>
             </div>
-            <span
-              className="text-sky-600 cursor-pointer"
-              onClick={() => setShowReply((prev: any) => !prev)}
-            >
-              {c.snippet.totalReplyCount} replies
-            </span>
+            {showReplay && c.id === commentId ? (
+              <span
+                className="text-sky-600 cursor-pointer"
+                onClick={() => {
+                  setShowReply(false);
+                }}
+              >
+                <span>
+                  {" "}
+                  <KeyboardArrowUpIcon />
+                </span>
+                {c.snippet.totalReplyCount} replies
+              </span>
+            ) : (
+              <span
+                className="text-sky-600 cursor-pointer"
+                onClick={() => {
+                  setShowReply(true);
+                  setCommentId(c.id);
+                  console.log(c.id, commentId);
+                }}
+              >
+                <span>
+                  {" "}
+                  <ExpandMoreIcon />
+                </span>
+                {c.snippet.totalReplyCount} replies
+              </span>
+            )}
 
             <div></div>
           </div>
